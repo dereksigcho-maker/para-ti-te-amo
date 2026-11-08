@@ -1,0 +1,438 @@
+/* ===== Variables ===== */
+:root {
+  --fondo: #f4ead9;
+  --fondo-2: #ecdcc4;
+  --crema: #fff8ee;
+  --texto: #3b2d29;
+  --texto-suave: #7a6560;
+  --rosa: #e08fa3;
+  --rosa-fuerte: #c9607b;
+  --rosa-claro: #f6d3da;
+  --borde: #3b2d29;
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ancho: 1100px;
+}
+
+/* ===== Base ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background:
+    radial-gradient(circle at 90% 8%, var(--rosa-claro) 0, transparent 38%),
+    radial-gradient(circle at 5% 55%, #f0d9bd 0, transparent 40%),
+    var(--fondo);
+  background-attachment: fixed;
+  color: var(--texto);
+  font-family: var(--sans);
+  font-weight: 400;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+h1 { font-size: clamp(2.8rem, 7vw, 5.2rem); letter-spacing: -0.01em; }
+h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1.2rem; }
+h3 { font-size: 1.7rem; margin-bottom: 0.5rem; }
+
+h1 em, h2 em { color: var(--rosa-fuerte); font-style: italic; }
+
+p + p { margin-top: 1rem; }
+
+/* ===== Cabecera / menú ===== */
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 2rem;
+  background: rgba(244, 234, 217, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--borde);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--texto);
+  transition: transform 0.2s;
+}
+
+.logo:hover { transform: rotate(-2deg) scale(1.03); }
+
+.logo-sello { flex-shrink: 0; }
+
+.logo-texto em {
+  font-style: italic;
+  color: var(--rosa-fuerte);
+  padding: 0 0.1em;
+}
+
+@media (max-width: 800px) {
+  .logo { font-size: 1.4rem; }
+  .logo-sello { width: 42px; height: 42px; }
+}
+
+.cabecera nav { display: flex; gap: 0.6rem; }
+
+.cabecera nav a {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 0.55rem 1.2rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+
+.cabecera nav a:hover {
+  border-color: var(--borde);
+  background: var(--crema);
+}
+
+.cabecera nav a.activo {
+  background: var(--rosa);
+  border-color: var(--borde);
+  box-shadow: 3px 3px 0 var(--borde);
+}
+
+/* ===== Elementos comunes ===== */
+.etiqueta,
+.meta {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--texto);
+  background: var(--rosa-claro);
+  border: 2px solid var(--borde);
+  border-radius: 999px;
+  padding: 0.25rem 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.meta { margin-bottom: 0.7rem; }
+
+.lead {
+  font-size: 1.2rem;
+  color: var(--texto-suave);
+  max-width: 540px;
+  margin-top: 1.4rem;
+}
+
+.bloque {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.bloque.estrecho { max-width: 720px; }
+
+.encabezado-pagina {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 5rem 2rem 1rem;
+}
+
+/* ===== Fotos ===== */
+.foto {
+  background: var(--rosa-claro);
+  border: 2px solid var(--borde);
+  border-radius: 18px;
+  box-shadow: 8px 8px 0 var(--rosa);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.foto:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 11px 11px 0 var(--rosa-fuerte);
+}
+
+.foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto img.imagen-entera { object-fit: contain; }
+
+.foto-grande { aspect-ratio: 4 / 5; }
+.foto-pequena { aspect-ratio: 1 / 1; box-shadow: 5px 5px 0 var(--rosa); }
+.foto-ancha { aspect-ratio: 16 / 10; }
+
+/* ===== Portada (index) ===== */
+.portada {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 5rem 2rem 3rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* ===== Cita / frase ===== */
+blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 1.35;
+  margin: 2.5rem 0;
+  padding: 1.6rem 1.8rem;
+  background: var(--crema);
+  border: 2px solid var(--borde);
+  border-radius: 18px;
+  box-shadow: 8px 8px 0 var(--rosa);
+}
+
+.cierre { text-align: center; }
+
+.frase {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--rosa-fuerte);
+  margin-bottom: 2rem;
+}
+
+.boton {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 1rem 2rem;
+  background: var(--rosa);
+  border: 2px solid var(--borde);
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--borde);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.boton:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--borde);
+}
+
+/* ===== Rejilla de tarjetas ===== */
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.8rem;
+  margin-top: 2.5rem;
+}
+
+.tarjeta {
+  background: var(--crema);
+  border: 2px solid var(--borde);
+  border-radius: 22px;
+  padding: 1.3rem;
+  transition: transform 0.25s;
+}
+
+.tarjeta:hover { transform: rotate(-1deg) translateY(-4px); }
+
+.tarjeta .foto {
+  margin-bottom: 1.3rem;
+  box-shadow: none;
+}
+
+.tarjeta .foto:hover { transform: none; box-shadow: none; }
+
+.tarjeta p { color: var(--texto-suave); }
+
+.detalle {
+  font-size: 0.88rem;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 2px dashed var(--rosa);
+}
+
+/* ===== Planes ===== */
+.lista-planes {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.plan {
+  display: grid;
+  grid-template-columns: 80px 1fr 150px;
+  gap: 1.8rem;
+  align-items: center;
+  padding: 1.6rem 1.8rem;
+  background: var(--crema);
+  border: 2px solid var(--borde);
+  border-radius: 22px;
+  box-shadow: 6px 6px 0 var(--rosa-claro);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.plan:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 var(--rosa);
+}
+
+.numero {
+  font-family: var(--serif);
+  font-size: 3.4rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--rosa-fuerte);
+  line-height: 1;
+}
+
+.plan-info p { color: var(--texto-suave); }
+
+/* ===== Viajes ===== */
+.lista-viajes {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  margin-top: 1rem;
+}
+
+.viaje {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.viaje.invertido .foto { order: 2; }
+
+.viaje-info p { color: var(--texto-suave); }
+
+/* ===== Pie ===== */
+.pie {
+  text-align: center;
+  padding: 3rem 2rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--texto-suave);
+  border-top: 2px solid var(--borde);
+  background: var(--rosa-claro);
+}
+
+/* ===== Móvil ===== */
+@media (max-width: 800px) {
+  .cabecera { flex-direction: column; gap: 0.7rem; padding: 0.8rem 1rem; }
+  .cabecera nav { flex-wrap: wrap; justify-content: center; }
+  .cabecera nav a { padding: 0.45rem 0.9rem; }
+
+  .portada,
+  .viaje { grid-template-columns: 1fr; gap: 2.2rem; }
+
+  .viaje.invertido .foto { order: 0; }
+
+  .plan { grid-template-columns: 56px 1fr; }
+  .plan .foto-pequena { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+
+  .bloque { padding: 3.5rem 1.4rem; }
+}
+
+/* ===== Canciones ===== */
+.artista {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--rosa-fuerte);
+  margin-bottom: 0.6rem;
+}
+
+.cancion-destacada {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.cancion-destacada .foto { aspect-ratio: 1 / 1; }
+
+.cancion-info p { color: var(--texto-suave); }
+.cancion-info .artista { color: var(--rosa-fuerte); }
+
+.lista-canciones {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.cancion {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 1.8rem;
+  align-items: center;
+  padding: 1.5rem 1.8rem;
+  background: var(--crema);
+  border: 2px solid var(--borde);
+  border-radius: 22px;
+  box-shadow: 6px 6px 0 var(--rosa-claro);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cancion:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 9px 9px 0 var(--rosa);
+}
+
+.enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+
+.cancion .enlaces { margin-top: 0; }
+
+.enlace {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.7rem 1.3rem;
+  background: var(--rosa);
+  border: 2px solid var(--borde);
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 var(--borde);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.enlace:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--borde);
+}
+
+@media (max-width: 800px) {
+  .cancion-destacada { grid-template-columns: 1fr; gap: 2.2rem; }
+  .cancion { grid-template-columns: 56px 1fr; }
+  .cancion .enlaces { grid-column: 1 / -1; }
+}
